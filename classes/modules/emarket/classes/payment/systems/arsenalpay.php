@@ -63,12 +63,21 @@ class arsenalpayPayment extends payment
 
 
     public function poll() {
+	    $remoteAddress = $_SERVER["REMOTE_ADDR"];
+	    $logString = date("Y-m-d H:i:s") . " " . $remoteAddress . " ";
+	    $this->postLog($logString);
+	    $allowIpAddress = trim($this->object->ip_address);
+
+	    if (strlen($allowIpAddress) > 0 && $allowIpAddress != $remoteAddress) {
+		    $this->addError(" Denied IP");
+		    $this->postLog('ANSWER: ERR');
+		    echo "ERR";
+		    die();
+	    }
+
         ob_start();
         $requestStatus = getRequest('STATUS');
 
-        $remoteAddress = $_SERVER["REMOTE_ADDR"];
-        $logString = date("Y-m-d H:i:s") . " " . $remoteAddress . " ";
-        $this->postLog($logString);
         $isValid = $this->validateCallback();
         $answer = 'ERR';
         if ($isValid) {
@@ -78,6 +87,22 @@ class arsenalpayPayment extends payment
             else if ($requestStatus == 'payment') {
                 $answer = 'OK';
                 $this->order->setPaymentStatus("accepted"); 
+            }
+            else if($requestStatus == 'hold') {
+	            $answer = 'OK';
+            }
+            else if($requestStatus == 'cancel' || $requestStatus == 'cancelinit') {
+            	if (!$this->order->isOrderPayed()) {
+		            $answer = 'OK';
+		            $this->order->setPaymentStatus("declined");
+	            } else {
+		            $this->addError("Order is paid!");
+		            $answer = 'ERR';
+	            }
+            }
+            else {
+            	$answer = 'ERR';
+            	$this->addError("Function " . $requestStatus . " is not supported!" );
             }
         } else {
             if ($requestStatus == 'check') {
@@ -101,7 +126,7 @@ class arsenalpayPayment extends payment
             if (is_null($requestArray[$key])) {
                 $error = $this->addError("Missing ".$key." in response");
             } else {
-                $this->postLog("{$key}={$requestArray[$key]}&");
+                $this->postLog("{$key}={$requestArray[$key]}");
             }
         }
 

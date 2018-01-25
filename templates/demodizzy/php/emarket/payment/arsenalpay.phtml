@@ -1,16 +1,25 @@
 <?php /** @var umiTemplaterPHP $this */ ?>
 <?php /** @var array $variables */ ?>
+
+<?php
+    if ($variables['purchase']['purchasing']['widget']) {
+        $data = $variables['purchase']['purchasing'];
+    } else {
+        $data = $variables['purchasing'];
+    }
+?>
+
 <script src='https://arsenalpay.ru/widget/script.js'></script>
 <div id='app-widget'></div>
  <script> 
     var APWidget = new ArsenalpayWidget({
         element: 'app-widget',
-        destination: "<?= $variables['purchase']['purchasing']['destination'] ?>",
-        widget: "<?= $variables['purchase']['purchasing']['widget'] ?>",
-        amount: "<?= $variables['purchase']['purchasing']['amount'] ?>",
-        userId: "<?= $variables['purchase']['purchasing']['userId'] ?>",
-        nonce: "<?= $variables['purchase']['purchasing']['nonce'] ?>",
-        widgetSign: "<?= $variables['purchase']['purchasing']['widgetSign'] ?>"
+        destination: "<?= $data['destination'] ?>",
+        widget: "<?= $data['widget'] ?>",
+        amount: "<?= $data['amount'] ?>",
+        userId: "<?= $data['userId'] ?>",
+        nonce: "<?= $data['nonce'] ?>",
+        widgetSign: "<?= $data['widgetSign'] ?>"
     });
     APWidget.render();
 </script>

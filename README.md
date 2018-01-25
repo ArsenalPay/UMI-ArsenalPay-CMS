@@ -4,7 +4,7 @@ UMI ArsenalPay CMS is software development kit for fast simple and seamless inte
 *Arsenal Media LLC*  
 [*Arsenal Pay processing server*]( https://arsenalpay.ru/)
 
-*Has been tested on UMI.CMS version 15*
+*Has been tested on UMI.CMS version 17*
 
 #### Basic feature list:  
  * Allows seamlessly integrate payment widget into your site.
@@ -29,6 +29,7 @@ UMI ArsenalPay CMS is software development kit for fast simple and seamless inte
   - Callback Key - Ключ для проверки подписи запросов, обязательный;
   - Widget Key -  Ключ для проверки виджета, обязательный;
   - Widget ID - Уникальный идентификатор виджета, обязательный;
+  - IP address - ip-адрес, только с которого будут разрешены обратные запросы о совершаемых платежах, необязательный;
 7. Сообщить нам Ваш колбэк-урл для уведомлений: ```{имя_вашего_домена}/emarket/gateway/```
 
 Если шаблоны Вашего сайта находятся в папке templates, и Ваша тема отличается от дефолтной demodizzy, то необходимо также проделать следующее:

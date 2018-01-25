@@ -9,7 +9,7 @@ $FORMS['form_block'] = <<<END
         element: "app-widget",
         destination: "%destination%",
         widget: "%widget%",
-        amount: "amount%",
+        amount: "%amount%",
         userId: "%userId%",
         nonce: "%nonce%",
         widgetSign: "%widgetSign%"

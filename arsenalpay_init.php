@@ -36,9 +36,9 @@ $fieldsCollection = umiFieldsCollection::getInstance();
 
 
 $fieldsIdArray   = array();
-$fieldsIdArray[] = $fieldsCollection->addField('callback_key', 'Callback key', $typeString->getId(), 1, 0, 0);
-$fieldsIdArray[] = $fieldsCollection->addField('widget_key', 'Widget key', $typeString->getId(), 1, 0, 0);
-$fieldsIdArray[] = $fieldsCollection->addField('widget_id', 'Widget ID', $typeString->getId(), 1, 0, 0);
+$fieldsIdArray[] = $fieldsCollection->addField('callback_key', 'callbackKey', $typeString->getId(), 1, 0, 0);
+$fieldsIdArray[] = $fieldsCollection->addField('widget_key', 'widgetKey', $typeString->getId(), 1, 0, 0);
+$fieldsIdArray[] = $fieldsCollection->addField('widget_id', 'widget', $typeString->getId(), 1, 0, 0);
 
 $groupId = $type->addFieldsGroup('settings', 'Параметры', 1, 1);
 $group   = $type->getFieldsGroup($groupId);

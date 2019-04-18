@@ -94,6 +94,6 @@
 
 Всегда с радостью ждем Ваших писем с предложениями. 
 
-pay@arsenalpay.ru  
+pay@arsenalpay.ru
 
 [arsenalpay.ru](https://arsenalpay.ru)
